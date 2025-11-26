@@ -12,30 +12,30 @@ With this repository, you can now install Netrics in a Docker container and run 
 1. Install the `docker` CLI. See the installation appropriate for your system [here](https://docs.docker.com/get-docker/).
 2. Once you have the `docker` CLI installed, clone this repository to your local file system:
     > ```bash
-    > git clone https://github.com/internet-equity/netrics-docker.git
+    > git clone https://github.com/internet-innovation/netrics-docker.git
     > ```
 3. Enter the cloned repository (`cd netrics-docker`).
-4. Pull the latest Netrics Docker image from [Docker Hub](https://hub.docker.com/r/ucinternetequity/netrics).
+4. Pull the latest Netrics Docker image from [Docker Hub](https://hub.docker.com/r/internet-innovation/netrics).
     > ```bash
-    > docker pull ucinternetequity/netrics
+    > docker pull internet-innovation/netrics
     > ```
 5. At this point, you can try using one of the `run*` scrips in the repository to build and launch a container with Netrics installed.
 
     To run a detached container that outputs Netrics logs to the terminal, use the `run-detached.sh` script:
     >```bash
-    > ./run-detached.sh ucinternetequity/netrics .
+    > ./run-detached.sh internet-innovation/netrics .
     >```
 
     To run an interactive container that launches a shell in the container, use the `run-interactive.sh` script:
     >```bash
-    > ./run-interactive.sh ucinternetequity/netrics .
+    > ./run-interactive.sh internet-innovation/netrics .
     >```
 
     If you want to walk through the steps to start a container, continue with the rest of the quick start walkthrough.
 
 5. Start a container with the image and a volume mounted to receive data.
     > ```bash
-    > docker run -d --name netrics-container -v absolute/path/to/netrics-docker/volumes/netrics/result:/home/netrics/result ucinternetequity/netrics:latest
+    > docker run -d --name netrics-container -v absolute/path/to/netrics-docker/volumes/netrics/result:/home/netrics/result internet-innovation/netrics:latest
     > ```
 6. Check the logs from the container that you started to confirm that the software is running:
     > ```bash
@@ -50,7 +50,7 @@ With this repository, you can now install Netrics in a Docker container and run 
     >```
 8. If you want to run the container interactively and use Netrics through the CLI interface (with a shell open in the container), run:
     > ```bash
-    >docker run -it ucinternetequity/netrics:latest bash
+    >docker run -it internet-innovation/netrics:latest bash
     >$ netrics -h
     >```
 
@@ -58,7 +58,7 @@ With this repository, you can now install Netrics in a Docker container and run 
     >
     > Running the container interactively in this manner will not automatically start the Netrics daemon (and no measurements will take place). If you want to run the container to start Netrics and see the measurement logs in your current shell, run this command instead:
     > ```
-    > docker run -d --name netrics-test -v ./volumes/netrics/result:/home/netrics/result ucinternetequity/netrics:latest
+    > docker run -d --name netrics-test -v ./volumes/netrics/result:/home/netrics/result internet-innovation/netrics:latest
     > ℹ️  time="2023-05-17 15:55:14.990" level="info" event="3eGp0Cw51tos" session="3eGp0Cw54puN" execution_count=0 scheduled_next=2023-05-17T15:56:00
     > ℹ️  time="2023-05-17 15:56:00.102" level="info" event="3eGp1TWzujwe" session="3eGp1TWA3gkb" sched="tiered-tenancy" task="hops-scamper" msg="skipped: suppressed by if/unless condition"
     > ℹ️  time="2023-05-17 15:56:00.542" level="info" event="3eGp1UIhDdRC" session="3eGp1TWA3gkb" task="ip" status="OK" exitcode=0
@@ -72,11 +72,11 @@ Read more below to learn more about reconfiguring the Docker image or the Netric
 >
 > If you find any issues with this repository or with the Netrics software, please report them to us! We'd also love to hear more about your experience using Netrics and any ideas you might have to make it better.
 >
-> Please send us a note at `broadband-equity@lists.uchicago.edu` or get in touch with us through one of the options on our [feedback page](https://internetequity.org/feedback/submitting-feedback.html).
+> Please send us a note at `broadband-research@lists.uchicago.edu` or get in touch with us through one of the options on our [feedback page](https://internet-innovation.github.io/feedback/submitting-feedback.html).
 
 ## Receiving Data from Netrics Container
 
-You can run the Netrics docker container with a mounted volume to transfer data from the container to your local computer. See additional details about how to do this [here](https://github.com/internet-equity/netrics-docker/blob/main/volumes/netrics/result/README.md).
+You can run the Netrics docker container with a mounted volume to transfer data from the container to your local computer. See additional details about how to do this [here](https://github.com/internet-innovation/netrics-docker/blob/main/volumes/netrics/result/README.md).
 
 ## Rebuilding the Image
 
@@ -101,13 +101,13 @@ docker run -d --name your-new-container-name -v ./volumes/netrics/result:/home/n
 
 ## Updating Netrics' Default Configuration
 
-The `config` directory in this repository contains the Netrics configuration files `defaults.yaml` and `measurements.yaml`. You can edit the files directly in the repository to change where Netrics saves data in the container and to customize the measurements configuration. To learn more about these configuration files, review the configuration section on the [Netrics repo](https://github.com/internet-equity/netrics#configuration).
+The `config` directory in this repository contains the Netrics configuration files `defaults.yaml` and `measurements.yaml`. You can edit the files directly in the repository to change where Netrics saves data in the container and to customize the measurements configuration. To learn more about these configuration files, review the configuration section on the [Netrics repo](https://github.com/internet-innovation/netrics#configuration).
 
 **If you update a configuration file, you will need to rebuild the image locally**. Follow the steps [above](#rebuilding-the-image) to rebuild the image after updating the configuration.
 
 ### Updating a Measurement's Schedule and Parameters
 
-Netrics runs measurements as tasks at a user-defined frequency in the `measurements.yaml` configuration file. Netrics relies on the [Fate library](https://github.com/internet-equity/fate) to schedule tasks and ensure their execution. Below is an example of a measurement and its schedule from the `measurements.yaml` file in this repository.
+Netrics runs measurements as tasks at a user-defined frequency in the `measurements.yaml` configuration file. Netrics relies on the [Fate library](https://github.com/internet-innovation/fate) to schedule tasks and ensure their execution. Below is an example of a measurement and its schedule from the `measurements.yaml` file in this repository.
 
 ```yaml
 ping:
@@ -129,10 +129,10 @@ In the example above, a measurement named `ping` is configured to run according 
 
 The `param` key in the configuration provides inputs to the task that Netrics will run. In this instance, the `param` tells Netrics to run the ping measurement with a set of destinations. We can update this set here and run ping measurements to a different set of destinations. 
 
-The actual module run by the `ping` command is another executable that comes installed with Netrics. Netrics has [built-in measurements](https://github.com/internet-equity/netrics#built-in-measurements) developed by researchers at the Internet Equity Initiative that a user can run out of the box.
+The actual module run by the `ping` command is another executable that comes installed with Netrics. Netrics has [built-in measurements](https://github.com/internet-innovation/netrics#built-in-measurements) developed by researchers at the Internet Innovation Initiative that a user can run out of the box.
 
 ```bash
-docker run -it ucinternetequity/netrics bash
+docker run -it internet-innovation/netrics bash
 $ ls .local/bin | grep netrics
 netrics
 netrics-dev
@@ -152,8 +152,8 @@ netrics.d
 netrics.s
 ```
 
-Appropriate parameters are defined and controlled by the binary that runs the task. You can view the [source code for each built-in measurement](https://github.com/internet-equity/netrics/tree/main/src/netrics/measurement) on the Netrics repository. All built-in measurements are implemented in Python. However, Netrics' integration with Fate allows it to run any arbirtary module implemented in any language.
+Appropriate parameters are defined and controlled by the binary that runs the task. You can view the [source code for each built-in measurement](https://github.com/internet-innovation/netrics/tree/main/src/netrics/measurement) on the Netrics repository. All built-in measurements are implemented in Python. However, Netrics' integration with Fate allows it to run any arbirtary module implemented in any language.
 
 ### Adding a New Measurement
 
-Read the documentation [here](./config/measurements/README.md) to learn how to add new measurements Netrics when running it with this repository and docker. See the general documentation on the Netrics repository about [adding a new measurement](https://github.com/internet-equity/netrics#adding-builtins) to the framework.
+Read the documentation [here](./config/measurements/README.md) to learn how to add new measurements Netrics when running it with this repository and docker. See the general documentation on the Netrics repository about [adding a new measurement](https://github.com/internet-innovation/netrics#adding-builtins) to the framework.

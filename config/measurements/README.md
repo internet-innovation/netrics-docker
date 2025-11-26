@@ -100,4 +100,4 @@ $ netrics.d --foreground
 ℹ️  time="2023-05-17 20:39:00.457" level="info" event="3eGwO4O5b7US" session="3eGwO4jhKU7d" execution_count=2 scheduled_next=2023-05-17T20:40:00
 ```
 
-You can try adding your own custom measurements to the same folder and running them with Netrics following this process. Read more about the [requirements for measurement modules](https://github.com/internet-equity/netrics#development) and review the [source code](https://github.com/internet-equity/netrics/tree/main/src/netrics/measurement) for current Netrics measurements.
+You can try adding your own custom measurements to the same folder and running them with Netrics following this process. Read more about the [requirements for measurement modules](https://github.com/internet-innovation/netrics#development) and review the [source code](https://github.com/internet-innovation/netrics/tree/main/src/netrics/measurement) for current Netrics measurements.
